@@ -1,0 +1,32 @@
+{% extends "main_app/base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="cont-home">
+  <div class="main">
+    <div class="welcome">
+      <h2>Welcome to <span id="name">Price Tracker</span></h2>
+      <h4>
+        <span>We provide</span>
+        <span class="auto-type"></span>
+      </h4>
+
+      <p>Empower your savings with our website! Receive instant notifications when the prices of your favorite
+        <br>products drop. Never miss a deal again – our price tracker keeps you in the loop, ensuring <br>you get the
+        best value for your money. Sign up now for smart and savvy shopping!
+      </p>
+
+      <div class="home-btn">
+        <button type="button" class="cta-button" id="getStartedButton">Get Started</button>
+        <form method="" action="{% url 'search' %}">
+          {% csrf_token %}
+          <button type="submit" id="create">Create Alert</button>
+        </form>
+      </div>
+    </div>
+    <div class="bg-image">
+      <img src={% static "/main_app/img/smartphoneoncopy.jpg" %} alt="image">
+    </div>
+  </div>  
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "main_app/base.html" %}{% load static %}
+{% block title %}Tracking{% endblock %}
+{% block content %}
+<div class="cont-tracking">
+        <div class="title">
+                <h1>Tracking Products</h1>
+                <form method="" action="{% url 'search' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="add-btn">Add Product</button>
+                </form>
+        </div>
+        {% for product in tracked_products %}
+
+        <div class="tracking-list">
+
+                <div class="product-image">
+                        <a href="{{product.url}}" target="_blank"><img src="{{ product.image_url }}"
+                                        alt="Not found"></a>
+                </div>
+
+                <div class="product-details">
+                        <h3>{{ product.product_name }}</h3>
+                        <div class="price">
+                                <span>Current Price : ₹{{ product.product_price }} </span>
+                                <span>Target Price : ₹{{ product.max_price }} </span>
+                        </div>
+                        <div class="rm-button">
+
+                                <form method="post" action="{% url 'remove_from_tracking' product.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="remove-button">Remove</button>
+                                </form>
+                        </div>
+                </div>
+        </div>
+        {% endfor %}
+
+
+</div>
+{% endblock %}

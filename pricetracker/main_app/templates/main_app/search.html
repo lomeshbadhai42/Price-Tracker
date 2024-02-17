@@ -1,0 +1,19 @@
+{% extends "main_app/base.html" %}
+{% block title %}Search{% endblock %}
+{% block content %}
+<div class="cont-search" >
+<h1>Enter Product URL</h1>
+<form id="productForm" method="post" onsubmit="return showAlert()">
+    {% csrf_token %}
+    <div class="seach-box">
+        <div class="input-box">
+            <input type="url" name="searchbox" placeholder="Enter Product URL" required>
+            <input type="number" name="max_price" placeholder="Target Price">
+            <button type="submit" class="create-alert-btn">Create Alert</button>
+        </div>
+        
+    </div>
+</form>
+</div>
+
+{% endblock %}

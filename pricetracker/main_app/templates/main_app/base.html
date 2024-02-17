@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{% block title %}{% endblock title %} | Price Tracker</title>
+  <link rel="stylesheet" href="{% static 'main_app/css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="icon" type="image/x-icon" href="{% static 'main_app/img/favicon1.ico' %}">
+
+</head>
+<body>
+  <header>
+    <h2 class="logo">Price Tracker</h2>
+    <nav>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'tracking' %}">Tracking</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+
+        {% if user.is_authenticated %}
+        <li>
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+          </form>
+        </li>
+
+        {% else %}
+        <li>
+          <form method="" action="{% url 'login' %}">
+            {% csrf_token %}
+            <button type="submit">Login</button>
+          </form>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+
+  {% block content %}{% endblock content%}
+
+  <footer>
+    <b>Price Tracker </b>&copy; 2024 All rights reserved.
+  </footer>
+  <script>
+    function showAlert() {
+        alert("Your Product has been added for tracking!");
+    }
+  </script>
+  <script>
+    document.getElementById("getStartedButton").addEventListener("click", function() {
+      window.location.href = "/search";
+    });    
+</script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  var typed = new Typed('.auto-type', {
+      strings: ["Real-time Price Tracking", "Price drop Alert !",],
+      typeSpeed: 40,
+      backSpeed: 10,
+      loop: true
+  },);
+</script>
+
+</body>
+</html>

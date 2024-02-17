@@ -1,0 +1,16 @@
+{% extends "main_app/base.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+
+<div class="cont-signup">
+    <h1>Sign Up here!</h1>
+    <form id="register-form" method="post" >
+
+        {% csrf_token %}
+        {{ form }}
+        <button class="submit-btn" type="submit">Sign Up</button>
+    </form>
+
+    <p id="already">Already have an account? <a href="/login" class="login-link">Log In</a></p>
+</div>
+{% endblock %}
